@@ -1,0 +1,16 @@
+import mysql.connector
+class Faculty:
+    db="adc"
+    def __init__(self):
+        self.conn=mysql.connector.connect(host="localhost",user="root",password="",database=Faculty.db)
+        self.cur=self.conn.cursor()
+    def display(self,table="faculty"):
+        self.cur.execute("select * from "+table)
+        self.data=self.cur.fetchall()
+        print(len(self.data))
+    @classmethod
+    def change_db(cls,new_db):
+        cls.db=new_db
+
+fac1=Faculty()
+fac1.display("students")
